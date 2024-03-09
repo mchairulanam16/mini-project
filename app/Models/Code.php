@@ -10,6 +10,6 @@ class Code extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'id_user', 'id_user_get'
+        'name', 'user_id', 'id_user_get'
     ];
 }
