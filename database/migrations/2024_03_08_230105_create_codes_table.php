@@ -16,9 +16,9 @@ class CreateCodesTable extends Migration
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('id_user');
+            $table->unsignedBigInteger('user_id');
             $table->integer('id_used_by');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -15,19 +15,19 @@ class CreateAbsencesTable extends Migration
     {
         Schema::create('absences', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_class')->unsign();
-            $table->integer('id_subject')->unsign();
-            $table->integer('id_user')->unsign();
-            $table->integer('id_code');
+            $table->unsignedBigInteger('kelas_id');
+            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('code_id');
             $table->string('teaching_role');
             $table->date('date');
             $table->time('start');
             $table->time('end');
             $table->integer('duration');
-            $table->foreign('id_class')->references('id')->on('classes');
-            $table->foreign('id_subject')->references('id')->on('subjects');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_code')->references('id')->on('codes');
+            $table->foreign('kelas_id')->references('id')->on('kelas');
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('code_id')->references('id')->on('codes');
             $table->timestamps();
         });
     }
