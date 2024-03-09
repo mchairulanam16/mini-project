@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/code', [App\Http\Controllers\CodeController::class, 'index'])->name('code');
+Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store'])->name('generateCode');
