@@ -10,6 +10,6 @@ class Kelas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'department', 'faculty', 'level'
+        'department', 'faculty', 'level','name'
     ];
 }
