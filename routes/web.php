@@ -3,6 +3,7 @@
 use Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CodeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store
 Route::get('/class', [App\Http\Controllers\KelasController::class, 'index'])->name('class');
 //Absen
 Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'index'])->name('checkin');
+//Subject
+Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
