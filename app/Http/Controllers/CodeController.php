@@ -19,7 +19,7 @@ class CodeController extends Controller
         //
         $data = Code::all();
 
-        return $data;
+        return view('code', ['data' => $data]);
     }
 
     /**
@@ -47,7 +47,7 @@ class CodeController extends Controller
 
         Code::create([
             'name' => $code,
-            'user_id' => $id,
+            'user_id' => auth()->id()
         ]);
 
         return view('home');
