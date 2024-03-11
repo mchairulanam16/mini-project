@@ -21,8 +21,10 @@ Route::get('/', function () {
 })->middleware('auth');
 
 Auth::routes();
-
+//home
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//user
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 //Code
 Route::get('/code', [App\Http\Controllers\CodeController::class, 'index'])->name('code');
 Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store'])->name('generateCode');
