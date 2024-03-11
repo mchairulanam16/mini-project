@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Session;
 
 class KelasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +22,7 @@ class KelasController extends Controller
         //
         $data = Kelas::all();
 
-        return $data;
+        return view('class', ['data' => $data]);
     }
 
     /**

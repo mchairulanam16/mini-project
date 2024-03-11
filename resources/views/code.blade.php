@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="card-body">
 <div class="table-responsive">
     <table class="table table-editable table-nowrap align-middle table-edits">
         <thead class="table-light">
@@ -16,7 +17,7 @@
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->user_id }}</td>
+                <td>{{ $item->user->name }}</td>
                 @if ($item->id_used_by != null)
                 <td>Sudah Terpakai</td>
                 @else
@@ -26,5 +27,6 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 @endsection
