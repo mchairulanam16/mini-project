@@ -57,7 +57,7 @@
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
-                                <span class="hide-menu">Generate Code</span>
+                                <span class="hide-menu">Beranda</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -206,7 +206,12 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-    <!-- <script src="../assets/js/jam.js"></script> -->
+    <!-- In your layout file -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
     <script>
         function updateClock() {
             var now = new Date();
