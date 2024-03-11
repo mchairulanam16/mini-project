@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Code;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CodeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +22,10 @@ class CodeController extends Controller
     public function index()
     {
         //
-        $data = Code::all();
-
-        return view('code', ['data' => $data]);
+        $data = Code::with('user')->get();
+        return view('code', [
+            'data' => $data
+        ]);
     }
 
     /**

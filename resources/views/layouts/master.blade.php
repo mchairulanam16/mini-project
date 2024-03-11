@@ -7,9 +7,30 @@
     <title>{{ config('app.name', 'ClockIt!') }}</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
+    <style>
+        #watch {
+            color : rgb(252, 150,65);
+            position: absolute;
+            z-index: 1;
+            height: 40px;
+            width: 700px;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            font-size: 10vw;
+            -webkit-text-stroke: 3px rgb(210, 65, 36);
+            text-shadow: 3px rgb(210, 65, 36, 0.4),
+                4px 4px 20px rgba(210, 45, 26, 0.4),
+                4px 4px 20px rgba(210, 25, 16, 0.4),
+                4px 4px 20px rgba(210, 15, 06, 0.4);
+        }
+    </style>
 </head>
 
-<body>
+<body onload="realTimeClock()">
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
@@ -60,7 +81,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('class') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>
@@ -175,11 +196,7 @@
             <!--  Header End -->
             <div class="container-fluid">
                 <div class="card">
-                    <div class="card-body">
-                        <!-- <h5 class="card-title fw-semibold mb-4">Sample Page</h5>
-            <p class="mb-0">This is a sample page </p> -->
                         @yield('content')
-                    </div>
                 </div>
             </div>
         </div>
@@ -189,6 +206,24 @@
     <script src="../assets/js/sidebarmenu.js"></script>
     <script src="../assets/js/app.min.js"></script>
     <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+    <!-- <script src="../assets/js/jam.js"></script> -->
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            // Add leading zeros if needed
+            hours = (hours < 10) ? '0' + hours : hours;
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+            document.getElementById('clock').innerText = hours + ':' + minutes + ':' + seconds;
+        }
+
+        setInterval(updateClock, 1000); // Update every second
+    </script>
 </body>
 
 </html>
