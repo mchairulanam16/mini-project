@@ -51,7 +51,7 @@ class SubjectController extends Controller
             'name' => $data->name
         ]);
 
-        return view('home', $subject);
+        return view('subject', $subject);
     }
 
     /**

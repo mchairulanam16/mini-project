@@ -39,6 +39,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $idAsisten = $request->input('id_asisten');
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = bcrypt($request->input('password'));
+        $role = $request->input('role');
+
+        // Create a new user using the retrieved data
+        User::create([
+            'id_asisten' => $idAsisten,
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'role' => $role
+        ]);
     }
 
     /**

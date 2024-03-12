@@ -22,8 +22,8 @@ class CreateAbsencesTable extends Migration
             $table->string('teaching_role');
             $table->date('date');
             $table->time('start');
-            $table->time('end');
-            $table->integer('duration');
+            $table->time('end')->nullable();
+            $table->integer('duration')->nullable();
             $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('user_id')->references('id')->on('users');

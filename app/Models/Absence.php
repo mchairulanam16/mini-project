@@ -2,35 +2,36 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Absence extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id_class', 'id_subject', 'id_user', 'id_code', 'teaching_role', 'date', 'start', 'end', 'duration'
+        'kelas_id', 'subject_id', 'user_id', 'code_id', 'teaching_role', 'date', 'start', 'end', 'duration'
     ];
 
-    public function kelas(): HasMany
+    public function kelas(): BelongsTo
     {
-        return $this->hasMany(Kelas::class);
+        return $this->belongsTo(Kelas::class);
     }
 
-    public function subject(): HasMany
+    public function subject(): BelongsTo
     {
-        return $this->hasMany(Subject::class);
+        return $this->belongsTo(Subject::class);
     }
 
-    public function user(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function code(): HasMany
+    public function code(): BelongsTo
     {
-        return $this->hasMany(Code::class);
+        return $this->belongsTo(Code::class);
     }
 
 }

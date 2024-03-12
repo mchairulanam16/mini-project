@@ -59,11 +59,28 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#submitBtn').click(function () {
-            $('#myForm').submit(); // Submit form when button is clicked
-        });
+    // Get the form element
+    const form = document.getElementById('myForm');
+
+    // Add an event listener to the submit button
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        // Serialize form data
+        const formData = new FormData(form);
+
+        // Send form data via Axios
+        axios.post(form.getAttribute('action'), formData)
+            .then(function (response) {
+                // Handle success response
+                console.log(response.data);
+                // Redirect the user to a new page or do something else
+                window.location.href = "{{ route('subject') }}";
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error(error);
+            });
     });
 </script>
 @endsection

@@ -62,11 +62,11 @@
             </div>
             <div class="form-group">
                 <label for="email">Tingkat</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Tingkat">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Tingkat">
             </div>
             <div class="form-group">
                 <label for="password"> Kelas</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Kelas"
+                <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Kelas"
             </div>
         </form>
       </div>
@@ -77,11 +77,28 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#submitBtn').click(function () {
-            $('#myForm').submit(); // Submit form when button is clicked
-        });
+    // Get the form element
+    const form = document.getElementById('myForm');
+
+    // Add an event listener to the submit button
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        // Serialize form data
+        const formData = new FormData(form);
+
+        // Send form data via Axios
+        axios.post(form.getAttribute('action'), formData)
+            .then(function (response) {
+                // Handle success response
+                console.log(response.data);
+                // Redirect the user to a new page or do something else
+                window.location.href = "{{ route('class') }}";
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error(error);
+            });
     });
 </script>
 @endsection

@@ -44,17 +44,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Asisten</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myForm" method="POST" action="">
+        <form id="myForm" method="POST" action="{{ route('user.add') }}">
             @csrf
             <div class="form-group">
-                <label for="id-asisten">ID Asisten</label>
-                <input type="text" class="form-control" id="id-asisten" name="id-asisten" placeholder="ex: 18889">
+                <label for="id_asisten">ID Asisten</label>
+                <input type="text" class="form-control" id="id_asisten" name="id_asisten" placeholder="ex: 18889">
             </div>
             <div class="form-group">
                 <label for="name">Nama</label>
@@ -70,11 +67,13 @@
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
-                <input type="text" class="form-control" id="role" name="role" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="photo">Foto</label>
-                <input type="file" class="form-control" id="photo" name="photo">
+                <select class="form-control" id="options" name="role">
+                        <option value="" disabled selected>Pilih Role</option>
+                        <option value="admin">admin</option>
+                        <option value="staff">staff</option>
+                        <option value="pj">PJ</option>
+                        <option value="asisten">asisten</option>
+                    </select>
             </div>
         </form>
       </div>
@@ -85,13 +84,28 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#submitBtn').click(function () {
-            $('#myForm').submit(); // Submit form when button is clicked
-        });
+    // Get the form element
+    const form = document.getElementById('myForm');
+
+    // Add an event listener to the submit button
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        // Serialize form data
+        const formData = new FormData(form);
+
+        // Send form data via Axios
+        axios.post(form.getAttribute('action'), formData)
+            .then(function (response) {
+                // Handle success response
+                console.log(response.data);
+                // Redirect the user to a new page or do something else
+                window.location.href = "{{ route('user') }}";
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error(error);
+            });
     });
 </script>
-
-
 @endsection

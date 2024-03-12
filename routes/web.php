@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return redirect()->route('home');
-})->middleware('auth');
+});
 
 Auth::routes();
 //home
@@ -32,6 +32,7 @@ Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store
 //Kelas
 Route::get('/class', [App\Http\Controllers\KelasController::class, 'index'])->name('class');
 //Absen
-Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'index'])->name('checkin');
+Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
+Route::post('/absence-out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
 //Subject
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Code;
+use App\Models\Absence;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,5 +44,10 @@ class User extends Authenticatable
     public function code(): HasMany
     {
         return $this->hasMany(Code::class);
+    }
+
+    public function absence(): HasMany
+    {
+        return $this->hasMany(Absence::class);
     }
 }
