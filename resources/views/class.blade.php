@@ -43,30 +43,30 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Asisten</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myForm" method="POST" action="">
+        <form id="myForm" method="POST" action="{{ route('class.add') }}">
             @csrf
             <div class="form-group">
-                <label for="id-asisten">Jurusan</label>
-                <input type="text" class="form-control" id="id-asisten" name="id-asisten" placeholder="Masukkan Jurusan">
+                <label for="department">Jurusan</label>
+                <input type="text" class="form-control" id="department" name="department" placeholder="Masukkan Jurusan">
             </div>
             <div class="form-group">
-                <label for="name">Fakultas</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Fakultas">
+                <label for="faculty">Fakultas</label>
+                <input type="text" class="form-control" id="faculty" name="faculty" placeholder="Masukkan Fakultas">
             </div>
             <div class="form-group">
-                <label for="email">Tingkat</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Tingkat">
+                <label for="level">Tingkat</label>
+                <input type="text" class="form-control" id="level" name="level" placeholder="Masukkan Tingkat">
             </div>
             <div class="form-group">
-                <label for="password"> Kelas</label>
-                <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Kelas"
+                <label for="name"> Kelas</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Kelas"
             </div>
         </form>
       </div>

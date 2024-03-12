@@ -44,7 +44,7 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myForm" method="POST" action="">
+        <form id="myForm" method="POST" action="{{ route('subject.add')}}">
             @csrf
             <div class="form-group">
                 <label for="name">Materi</label>

@@ -43,17 +43,20 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data = $request->all();
+
+        $name = $request->input('name');
+        $department = $request->input('department');
+        $faculty = $request->input('faculty');
+        $level = $request->input('level');
 
         $data = Kelas::create([
-            'name' => $data->name,
-            'department' => $data->department,
-            'faculty' => $data->faculty,
-            'level' => $data->level
+            'name' => $name,
+            'department' => $department,
+            'faculty' => $faculty,
+            'level' => $level
         ]);
 
-        return redirect()->route('home')
+        return redirect()->route('class')
                 ->with('success', 'Kelas berhasil ditambahkan.');
     }
 

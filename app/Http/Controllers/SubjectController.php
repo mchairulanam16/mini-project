@@ -45,13 +45,13 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->all();
+        $subject = $request->input('name');
 
         $subject = Subject::create([
-            'name' => $data->name
+            'name' => $subject
         ]);
 
-        return view('subject', $subject);
+        return redirect()->route('user');
     }
 
     /**
