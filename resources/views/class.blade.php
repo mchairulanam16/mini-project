@@ -30,6 +30,11 @@
                         <td>{{ $item->faculty }}</td>
                         <td>{{ $item->level }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+                            Edit
+                        </button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -65,8 +70,8 @@
                 <input type="text" class="form-control" id="level" name="level" placeholder="Masukkan Tingkat">
             </div>
             <div class="form-group">
-                <label for="name"> Kelas</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Kelas"
+                <label for="name">kelas</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Tingkat">
             </div>
         </form>
       </div>
@@ -77,6 +82,55 @@
     </div>
   </div>
 </div>
+
+<!-- modal edit-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Asisten</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Form goes here -->
+        <form id="myEditForm" method="POST" action="{{ route('user.update') }}">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="id_asisten-edit">ID Asisten</label>
+                <input type="text" class="form-control" id="id_asisten-edit" name="id_asisten-edit">
+            </div>
+            <div class="form-group">
+                <label for="name-edit">Nama</label>
+                <input type="text" class="form-control" id="name-edit" name="name-edit">
+            </div>
+            <div class="form-group">
+                <label for="email-edit">Email</label>
+                <input type="email-edit" class="form-control" id="email-edit" name="email-edit">
+            </div>
+            <!-- <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="********">
+            </div> -->
+            <div class="form-group">
+                <label for="role-edit">Role</label>
+                <select class="form-control" id="role-edit" name="role">
+                        <option value="" disabled selected>Pilih Role</option>
+                        <option value="admin">admin</option>
+                        <option value="staff">staff</option>
+                        <option value="pj">PJ</option>
+                        <option value="asisten">asisten</option>
+                    </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submitEditBtn">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     // Get the form element

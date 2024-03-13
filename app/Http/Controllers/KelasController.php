@@ -69,9 +69,9 @@ class KelasController extends Controller
     public function show($id)
     {
         //
-        $Kelas = Kelas::findOrFail($id);
+        $kelas = Kelas::findOrFail($id);
 
-        return view('home', $Kelas);
+        return response()->json($kelas);
     }
 
     /**

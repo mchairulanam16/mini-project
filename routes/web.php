@@ -34,10 +34,13 @@ Route::get('/code', [App\Http\Controllers\CodeController::class, 'index'])->name
 Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store'])->name('generateCode');
 //Kelas
 Route::get('/class', [App\Http\Controllers\KelasController::class, 'index'])->name('class');
-Route::post('/add-class',  [App\Http\Controllers\KelasController::class, 'store'])->name('class.add');
+Route::get('/class/{id}', [App\Http\Controllers\KelasController::class, 'show'])->name('class.show');
+Route::post('/class/add',  [App\Http\Controllers\KelasController::class, 'store'])->name('class.add');
+Route::delete('class/delete/{id}', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.delete');
+Route::post('class/update/', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.update');
 //Absen
 Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
 Route::post('/absence-out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
 //Subject
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
-Route::post('/subject-add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');
+Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');
