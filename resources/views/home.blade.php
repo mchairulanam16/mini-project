@@ -25,6 +25,7 @@ $isCheckin = App\Models\Absence::where('user_id', Auth::id())->where('date', $to
 
             <h1>Selamat Datang {{ $role->name}}</h1>
             <form id="form-checkin" action="{{ route('checkin') }}" method="post">
+                @csrf
                 <div class="mb-3">
                     <center>
                         <label id="clock" style="font-size: 50px; color:#0A77DE; webkit-text-stroke: 3px #00ACFE" ; text-shadow: 4px 4px 10px #36D6F3, 4px 4px 20px #36D6F3, 4px 4px 30px #36D6F3, 4px 4px 40px #36D6F3;>
@@ -73,11 +74,12 @@ $isCheckin = App\Models\Absence::where('user_id', Auth::id())->where('date', $to
                 <p>*Silahkan minta PJ atau Staff untuk kode absen</p>
                 @if(empty($isCheckin))
                 <button type="submit" class="btn btn-primary">Clock In</button>
+                @endif
             </form>
-            @elseif(!empty($isCheckin))
+            @if(!empty($isCheckin))
             <form id="form-checkout" action="{{ route('checkout') }}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-danger">Clock Out</button>
+                <button type="submit" class="btn btn-warning">Clock Out</button>
             </form>
             @endif
         </div>

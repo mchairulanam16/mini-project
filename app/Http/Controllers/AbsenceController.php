@@ -118,15 +118,15 @@ class AbsenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update()
     {
-        $carbon = Carbon::now->timezone('Asia/Bangkok');
+        $carbon = Carbon::now()->timezone('Asia/Bangkok');
         $today = $carbon->toDateString();
         $idLogin = Auth::user()->id;
         $isCheckin = Absence::where('user_id', $idLogin)->where('date', $today)->where('end', null)->first();
 
         $start = $isCheckin->start;
-        $keluar = Carbon::now("GMT+7")->toTimeString();
+        $keluar = Carbon::now()->timezone('Asia/Bangkok')->toTimeString();
         $duration = $carbon->diffInMinutes($start);
         $isCheckin->end = $keluar;
         $isCheckin->duration = $duration;
