@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+<div id="clock"></div>
 <div class="card-body">
     <div class="row">
         <div class="col-md-6">
@@ -106,4 +107,32 @@
 
     </div>
 </div>
+<script>
+// (Optional) Include Vue.js if you prefer a more reactive approach
+window.onload = function() {
+  const clockElement = document.getElementById('clock');
+  let intervalId;
+
+  function updateClock() {
+    const now = moment().format('hh:mm:ss'); // Use moment.js for formatting (optional)
+    clockElement.textContent = now;
+  }
+
+  updateClock(); // Initial update
+  intervalId = setInterval(updateClock, 1000); // Update every second
+
+  // (Optional) Vue.js approach (replace above with this if using Vue)
+  // new Vue({
+  //   el: '#app',
+  //   data: {
+  //     currentTime: moment().format('hh:mm:ss'),
+  //   },
+  //   mounted() {
+  //     setInterval(() => {
+  //       this.currentTime = moment().format('hh:mm:ss');
+  //     }, 1000);
+  //   },
+  // });
+};
+</script>
 @endsection

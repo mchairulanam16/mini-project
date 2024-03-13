@@ -25,7 +25,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //user
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
-Route::post('/add-user', [App\Http\Controllers\UserController::class, 'store'])->name('user.add');
+Route::post('/user/add', [App\Http\Controllers\UserController::class, 'store'])->name('user.add');
+Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::delete('/user/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete');
+Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 //Code
 Route::get('/code', [App\Http\Controllers\CodeController::class, 'index'])->name('code');
 Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store'])->name('generateCode');

@@ -64,6 +64,9 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user = User::findOrFail($id);
+
+        return response()->json($user);
     }
 
     /**
@@ -87,6 +90,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -98,5 +102,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        // return redirect()->route('user');
+        return redirect()->route('user');
     }
 }

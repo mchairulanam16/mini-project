@@ -7,7 +7,7 @@
     <title>{{ config('app.name', 'ClockIt!') }}</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <style>
+    <!-- <style>
         #watch {
             color : rgb(252, 150,65);
             position: absolute;
@@ -27,10 +27,10 @@
                 4px 4px 20px rgba(210, 25, 16, 0.4),
                 4px 4px 20px rgba(210, 15, 06, 0.4);
         }
-    </style>
+    </style> -->
 </head>
 
-<body onload="realTimeClock()">
+<body>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
@@ -182,7 +182,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 
-    <script>
+    <!-- <script>
         function updateClock() {
             var now = new Date();
             var hours = now.getHours();
@@ -198,7 +198,7 @@
         }
 
         setInterval(updateClock, 1000); // Update every second
-    </script>
+    </script> -->
 </body>
 
 </html>
