@@ -1,6 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
+<div>
+    <h2>Klik tombol untuk generate code</h2>
+    <h4>
+        <a href="{{ route('generateCode') }}" class="btn btn-success">Generate Code</a>
+    </h4>
+</div>
 <div class="card-body">
 <div class="table-responsive">
     <table class="table table-editable table-nowrap align-middle table-edits">

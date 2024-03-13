@@ -149,6 +149,6 @@ class AbsenceController extends Controller
 
     public function export()
     {
-        return Excel::download(new AbsenceExport, 'absence.xlsx');
+        return Excel::download(new AbsenceExport, 'Report.xlsx');
     }
 }

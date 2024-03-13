@@ -92,8 +92,7 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="{{ route('user.update') }}">
-            @csrf
+        <form id="myEditForm" method="POST" action="">
             @method('PUT')
             <div class="form-group">
                 <label for="department-edit">Jurusan</label>

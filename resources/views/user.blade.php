@@ -32,14 +32,21 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
-                        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-user-id="{{ $user->id }}">
-                            Edit
-                        </button>
-                        <form method="POST" action="{{ route('user.delete', $user->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Dele</button>
-                        </form>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-user-id="{{ $user->id }}">
+                                    <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <form method="POST" action="{{ route('user.delete', $user->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                <img src="{{ asset ('assets/images/icon/trash.svg')}}" alt="">
+                                </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

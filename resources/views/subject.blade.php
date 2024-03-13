@@ -75,7 +75,7 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="{{ route('user.update') }}">
+        <form id="myEditForm" method="POST" action="">
             @csrf
             @method('PUT')
             <div class="form-group">
