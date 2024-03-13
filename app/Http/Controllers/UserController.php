@@ -92,7 +92,7 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
 
-        $data = User::update([
+        $user->update([
             'id_asisten' => $request->input('id_asisten-edit'),
             'name' => $request->input('name-edit'),
             'email' => $request->input('email-edit'),

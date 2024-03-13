@@ -24,13 +24,12 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->kelas->name }}</td>
                 <td>{{ $item->subject->name }}</td>
-                <!-- <td>{{ $item->user->name }}</td> -->
                 <td>{{ $item->code->name }}</td>
                 <td>{{ $item->teaching_role }}</td>
                 <td>{{ $item->date }}</td>
-                <td>{{ $item->mulai }}</td>
-                <td>{{ $item->selesai }}</td>
-                <td>{{ $item->durasi }}</td>
+                <td>{{ $item->start }}</td>
+                <td>{{ $item->end }}</td>
+                <td>{{ $item->duration }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -7,6 +7,7 @@ use App\Models\Code;
 use App\Models\Kelas;
 use App\Models\Absence;
 use Illuminate\Http\Request;
+use App\Exports\AbsenceExport;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -148,6 +149,6 @@ class AbsenceController extends Controller
 
     public function export()
     {
-        return Excel::download(new AbsencesExport, 'absence.xlsx');
+        return Excel::download(new AbsenceExport, 'absence.xlsx');
     }
 }

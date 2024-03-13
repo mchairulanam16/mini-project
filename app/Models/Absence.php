@@ -34,4 +34,9 @@ class Absence extends Model
         return $this->belongsTo(Code::class);
     }
 
+    public function getAttr()
+    {
+        return $this->user->name;
+    }
+
 }

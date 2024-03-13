@@ -27,7 +27,7 @@
                     @foreach ($data as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->id_asisten }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
@@ -79,7 +79,7 @@
             <div class="form-group">
                 <label for="role">Role</label>
                 <select class="form-control" id="options" name="role">
-                        <option value="" disabled selected></option>
+                        <option value="" disabled selected>Pilih Role</option>
                         <option value="admin">admin</option>
                         <option value="staff">staff</option>
                         <option value="pj">PJ</option>
@@ -105,7 +105,7 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="{{ route('user.update') }}">
+        <form id="myEditForm" method="POST" action="{{ route('user.update', $user->id ) }}">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -120,10 +120,6 @@
                 <label for="email-edit">Email</label>
                 <input type="email-edit" class="form-control" id="email-edit" name="email-edit">
             </div>
-            <!-- <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="********">
-            </div> -->
             <div class="form-group">
                 <label for="role-edit">Role</label>
                 <select class="form-control" id="role-edit" name="role-edit">
@@ -148,15 +144,15 @@
 <!-- script add modal -->
 <script>
     // Get the form element
-    const form = document.getElementById('myForm');
+    const formAdd = document.getElementById('myForm');
 
     // Add an event listener to the submit button
     document.getElementById('submitBtn').addEventListener('click', function() {
         // Serialize form data
-        const formData = new FormData(form);
+        const formData = new FormData(formAdd);
 
         // Send form data via Axios
-        axios.post(form.getAttribute('action'), formData)
+        axios.post(formAdd.getAttribute('action'), formData)
             .then(function (response) {
                 // Handle success response
                 console.log(response.data);
@@ -197,15 +193,15 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- script submit edit form -->
 <script>
     // Get the form element
-    const form = document.getElementById('myEditForm');
+    const formEdit = document.getElementById('myEditForm');
 
     // Add an event listener to the submit button
     document.getElementById('submitEditBtn').addEventListener('click', function() {
         // Serialize form data
-        const formData = new FormData(form);
+        const formData = new FormData(formEdit);
 
         // Send form data via Axios
-        axios.post(form.getAttribute('action'), formData)
+        axios.put(formEdit.getAttribute('action'), formData)
             .then(function (response) {
                 // Handle success response
                 console.log(response.data);

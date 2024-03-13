@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //user
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 Route::post('/user/add', [App\Http\Controllers\UserController::class, 'store'])->name('user.add');
-Route::post('/user/update/', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::put('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::delete('/user/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete');
 Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 //Code
@@ -46,3 +46,4 @@ Route::post('/in', [App\Http\Controllers\AbsenceController::class, 'store'])->na
 Route::post('/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
 Route::get('/absence/history', [App\Http\Controllers\AbsenceController::class, 'show'])->name('absence.history');
 Route::get('/absence/report', [App\Http\Controllers\AbsenceController::class, 'index'])->name('absence.report');
+Route::get('/absence/export/', [App\Http\Controllers\AbsenceController::class, 'export'])->name('export');
