@@ -7,44 +7,17 @@
     <title>{{ config('app.name', 'ClockIt!') }}</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <!-- <style>
-        #watch {
-            color : rgb(252, 150,65);
-            position: absolute;
-            z-index: 1;
-            height: 40px;
-            width: 700px;
-            overflow: show;
-            margin: auto;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            font-size: 10vw;
-            -webkit-text-stroke: 3px rgb(210, 65, 36);
-            text-shadow: 3px rgb(210, 65, 36, 0.4),
-                4px 4px 20px rgba(210, 45, 26, 0.4),
-                4px 4px 20px rgba(210, 25, 16, 0.4),
-                4px 4px 20px rgba(210, 15, 06, 0.4);
-        }
-    </style> -->
 </head>
 
 <body>
+    @php $role = App\Models\User::where('id', Auth::id())->first();
+    @endphp
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div>
-                <!-- <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
-          </div>
-        </div> -->
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                     <ul id="sidebarnav">
@@ -57,13 +30,14 @@
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
-                                <span class="hide-menu">Beranda</span>
+                                <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">FEATURE</span>
                         </li>
+                        @if($role->role == "staff" || $role->role == "admin")
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('code') }}" aria-expanded="false">
                                 <span>
@@ -96,6 +70,7 @@
                                 <span class="hide-menu">Data materi</span>
                             </a>
                         </li>
+                        @endif
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('absence.history')}}" aria-expanded="false">
                                 <span>
@@ -104,6 +79,7 @@
                                 <span class="hide-menu">Riwayat</span>
                             </a>
                         </li>
+                        @if($role->role == "staff" || $role->role == "admin")
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('absence.report')}}" aria-expanded="false">
                                 <span>
@@ -112,6 +88,7 @@
                                 <span class="hide-menu">Report</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -164,7 +141,7 @@
             <!--  Header End -->
             <div class="container-fluid">
                 <div class="card">
-                        @yield('content')
+                    @yield('content')
                 </div>
             </div>
         </div>
@@ -182,7 +159,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 
-    <!-- <script>
+    <script>
         function updateClock() {
             var now = new Date();
             var hours = now.getHours();
@@ -197,8 +174,8 @@
             document.getElementById('clock').innerText = hours + ':' + minutes + ':' + seconds;
         }
 
-        setInterval(updateClock, 1000); // Update every second
-    </script> -->
+        setInterval(updateClock, 1000);
+    </script>
 </body>
 
 </html>

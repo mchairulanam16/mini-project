@@ -9,7 +9,7 @@
                 <th>id</th>
                 <th>kelas</th>
                 <th>materi</th>
-                <th>asisten</th>
+                <!-- <th>asisten</th> -->
                 <th>kode</th>
                 <th>peran jaga</th>
                 <th>tanggal</th>
@@ -24,7 +24,7 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->kelas->name }}</td>
                 <td>{{ $item->subject->name }}</td>
-                <td>{{ $item->user->name }}</td>
+                <!-- <td>{{ $item->user->name }}</td> -->
                 <td>{{ $item->code->name }}</td>
                 <td>{{ $item->teaching_role }}</td>
                 <td>{{ $item->date }}</td>

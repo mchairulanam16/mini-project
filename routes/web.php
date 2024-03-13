@@ -38,11 +38,11 @@ Route::get('/class/{id}', [App\Http\Controllers\KelasController::class, 'show'])
 Route::post('/class/add',  [App\Http\Controllers\KelasController::class, 'store'])->name('class.add');
 Route::delete('class/delete/{id}', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.delete');
 Route::post('class/update/', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.update');
-//Absen
-Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
-Route::post('/absence/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
-Route::get('/absence/history', [App\Http\Controllers\AbsenceController::class, 'show'])->name('absence.history');
-Route::get('/absence/report', [App\Http\Controllers\AbsenceController::class, 'index'])->name('absence.report');
 //Subject
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
 Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');
+//Absen
+Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
+Route::post('/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
+Route::get('/absence/history', [App\Http\Controllers\AbsenceController::class, 'show'])->name('absence.history');
+Route::get('/absence/report', [App\Http\Controllers\AbsenceController::class, 'index'])->name('absence.report');

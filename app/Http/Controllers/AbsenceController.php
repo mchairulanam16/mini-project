@@ -9,7 +9,7 @@ use App\Models\Absence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AbsenceController extends Controller
 {
@@ -52,43 +52,32 @@ class AbsenceController extends Controller
     {
         //
         $data = $request->all();
-        $user = Auth::user();
+        $user = Auth::user()->id;
         $date = Carbon::now()->timezone('Asia/Bangkok');
         $today = $date->toDateString();
         $time = $date->toTimeString();
         $findcode = Code::where('name', $request->code)->first();
         $idcode = $findcode->id;
-        $cekcode = $findcode->id_used_by;
-        if($cekcode == $user->id || $cekcode = null) {
-            Session::flash('error', 'Tidak bisa gunakan kode sendiri.');
-            return redirect()->route('home')->with('eror', 'Tidak bisa gunakan kode sendiri.');
+        $cekcode = $findcode->user_id;
+        if($cekcode == $user || $cekcode = null) {
+            return redirect()->route('home')->with('error', 'Tidak bisa gunakan kode sendiri.');
         }
 
         $findcode->update([
-            'id_used_by' => $user->id
+            'id_used_by' => $user
         ]);
 
         $data = Absence::create([
             'kelas_id' => $request->kelas,
             'subject_id' =>$request->subject,
-            'user_id' => $user->id,
+            'user_id' => $user,
             'code_id' => $idcode,
             'teaching_role' => $request->role,
             'date' => $today,
-            'start' => $time
+            'start' => $time,
         ]);
 
-        // return view('out', [
-        //     'data' => $data,
-        //     'user' => $user,
-        //     'code' => $request->code
-        // ]);
         return redirect()->route('home');
-            // ->with([
-            //     'data' => $data,
-            //     'user' => $user,
-            //     'code' => $request->code
-            // ]);
     }
 
     /**
@@ -129,9 +118,21 @@ class AbsenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $carbon = Carbon::now->timezone('Asia/Bangkok');
+        $today = $carbon->toDateString();
+        $idLogin = Auth::user()->id;
+        $isCheckin = Absence::where('user_id', $idLogin)->where('date', $today)->where('end', null)->first();
+
+        $start = $isCheckin->start;
+        $keluar = Carbon::now("GMT+7")->toTimeString();
+        $duration = $carbon->diffInMinutes($start);
+        $isCheckin->end = $keluar;
+        $isCheckin->duration = $duration;
+        $isCheckin->save();
+
+        return redirect()->route('home');
     }
 
     /**
@@ -143,5 +144,10 @@ class AbsenceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(new AbsencesExport, 'absence.xlsx');
     }
 }
