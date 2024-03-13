@@ -96,30 +96,20 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="id_asisten-edit">ID Asisten</label>
-                <input type="text" class="form-control" id="id_asisten-edit" name="id_asisten-edit">
+                <label for="department-edit">Jurusan</label>
+                <input type="text" class="form-control" id="department-edit" name="department-edit" placeholder="Masukkan Jurusan">
             </div>
             <div class="form-group">
-                <label for="name-edit">Nama</label>
-                <input type="text" class="form-control" id="name-edit" name="name-edit">
+                <label for="faculty-edit">Fakultas</label>
+                <input type="text" class="form-control" id="faculty-edit" name="faculty-edit" placeholder="Masukkan Fakultas">
             </div>
             <div class="form-group">
-                <label for="email-edit">Email</label>
-                <input type="email-edit" class="form-control" id="email-edit" name="email-edit">
+                <label for="level-edit">Tingkat</label>
+                <input type="text" class="form-control" id="level-edit" name="level-edit" placeholder="Masukkan Tingkat">
             </div>
-            <!-- <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="********">
-            </div> -->
             <div class="form-group">
-                <label for="role-edit">Role</label>
-                <select class="form-control" id="role-edit" name="role">
-                        <option value="" disabled selected>Pilih Role</option>
-                        <option value="admin">admin</option>
-                        <option value="staff">staff</option>
-                        <option value="pj">PJ</option>
-                        <option value="asisten">asisten</option>
-                    </select>
+                <label for="name-edit">kelas</label>
+                <input type="text" class="form-control" id="name-edit" name="name-edit" placeholder="Masukkan Tingkat">
             </div>
         </form>
       </div>

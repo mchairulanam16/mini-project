@@ -126,7 +126,7 @@
             </div> -->
             <div class="form-group">
                 <label for="role-edit">Role</label>
-                <select class="form-control" id="role-edit" name="role">
+                <select class="form-control" id="role-edit" name="role-edit">
                         <option value="" disabled selected>Pilih Role</option>
                         <option value="admin">admin</option>
                         <option value="staff">staff</option>

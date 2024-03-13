@@ -71,7 +71,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Asisten</h5>
+        <h5 class="modal-title" id="editModalLabel">Edit Materi</h5>
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
@@ -79,30 +79,8 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="id_asisten-edit">ID Asisten</label>
-                <input type="text" class="form-control" id="id_asisten-edit" name="id_asisten-edit">
-            </div>
-            <div class="form-group">
-                <label for="name-edit">Nama</label>
+                <label for="name-edit">materi</label>
                 <input type="text" class="form-control" id="name-edit" name="name-edit">
-            </div>
-            <div class="form-group">
-                <label for="email-edit">Email</label>
-                <input type="email-edit" class="form-control" id="email-edit" name="email-edit">
-            </div>
-            <!-- <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="********">
-            </div> -->
-            <div class="form-group">
-                <label for="role-edit">Role</label>
-                <select class="form-control" id="role-edit" name="role">
-                        <option value="" disabled selected>Pilih Role</option>
-                        <option value="admin">admin</option>
-                        <option value="staff">staff</option>
-                        <option value="pj">PJ</option>
-                        <option value="asisten">asisten</option>
-                    </select>
             </div>
         </form>
       </div>

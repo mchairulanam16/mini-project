@@ -90,6 +90,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+
+        $data = User::update([
+            'id_asisten' => $request->input('id_asisten-edit'),
+            'name' => $request->input('name-edit'),
+            'email' => $request->input('email-edit'),
+            'role' => $request->input('role-edit')
+        ]);
+
+        return redirect->route('user');
 
     }
 

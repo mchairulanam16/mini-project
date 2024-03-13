@@ -21,6 +21,15 @@ class AbsenceController extends Controller
     public function index()
     {
         //
+        $data = Absence::with('user')
+        ->with('code')
+        ->with('kelas')
+        ->with('subject')
+        ->get();
+
+        // return $data;
+
+        return view('report', ['data' => $data]);
     }
 
     /**
@@ -88,9 +97,18 @@ class AbsenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $user = Auth::user()->id;
+
+        $data = Absence::with(['user', 'code', 'kelas', 'subject'])
+            ->where('user_id', $user)
+            ->get();
+
+        // return $data;
+
+        return view('history', ['data' => $data]);
     }
 
     /**

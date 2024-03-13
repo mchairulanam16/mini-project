@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //user
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 Route::post('/user/add', [App\Http\Controllers\UserController::class, 'store'])->name('user.add');
-Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::post('/user/update/', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::delete('/user/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete');
 Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 //Code
@@ -40,7 +40,9 @@ Route::delete('class/delete/{id}', [App\Http\Controllers\KelasController::class,
 Route::post('class/update/', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.update');
 //Absen
 Route::post('/absence', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
-Route::post('/absence-out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
+Route::post('/absence/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
+Route::get('/absence/history', [App\Http\Controllers\AbsenceController::class, 'show'])->name('absence.history');
+Route::get('/absence/report', [App\Http\Controllers\AbsenceController::class, 'index'])->name('absence.report');
 //Subject
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
 Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');
