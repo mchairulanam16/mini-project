@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -65,7 +66,6 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        dd($user);
 
         return response()->json($user);
     }

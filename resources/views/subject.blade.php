@@ -21,12 +21,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
+                    @foreach ($data as $subject)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $subject->id }}</td>
+                        <td>{{ $subject->name }}</td>
                         <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+                        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-subject-id="{{ $subject->id }}">
                         <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                         </button>
                         </td>
@@ -75,12 +75,11 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="">
+        <form id="editSubject" method="POST" action="{{ route('subject.update', ['id' => ':id']) }}" >
             @csrf
-            @method('PUT')
             <div class="form-group">
-                <label for="name-edit">materi</label>
-                <input type="text" class="form-control" id="name-edit" name="name-edit">
+                <label for="name_edit">materi</label>
+                <input type="text" class="form-control" id="name_edit" name="name_edit">
             </div>
         </form>
       </div>
@@ -91,29 +90,75 @@
     </div>
   </div>
 </div>
-
+<!-- script submit add form -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    // Get the form element
     const form = document.getElementById('myForm');
 
-    // Add an event listener to the submit button
     document.getElementById('submitBtn').addEventListener('click', function() {
-        // Serialize form data
         const formData = new FormData(form);
 
-        // Send form data via Axios
         axios.post(form.getAttribute('action'), formData)
             .then(function (response) {
-                // Handle success response
                 console.log(response.data);
-                // Redirect the user to a new page or do something else
+                window.location.href = "{{ route('subject') }}";
+                showAlert('success', 'Success: Asisten berhasil ditambahkan.');
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    });
+
+    // Function to show alert
+    function showAlert(type, message) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type}`;
+        alertDiv.textContent = message;
+        document.body.appendChild(alertDiv);
+        // Remove the alert after a certain duration if needed
+        setTimeout(function() {
+            alertDiv.remove();
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
+</script>
+<!-- script edit modal pop-up-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editButtons = document.querySelectorAll('.edit-btn');
+
+    editButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const subjectId = button.dataset.subjectId;
+            axios.get('/subject/' + subjectId)
+                .then(function (response) {
+                    const subject = response.data;
+                    document.getElementById('name_edit').value = subject.name;
+                    document.getElementById('editSubject').action = "{{ route('subject.update', ['id' => ':id']) }}"
+                        .replace(':id', subject.id);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        });
+    });
+});
+</script>
+<!-- script submit edit form -->
+<script>
+    const formEdit = document.getElementById('editSubject');
+
+    document.getElementById('submitEditBtn').addEventListener('click', function() {
+        const formData = new FormData(formEdit);
+
+        axios.post(formEdit.getAttribute('action'), formData)
+            .then(function (response) {
+                console.log(response.data);
                 window.location.href = "{{ route('subject') }}";
             })
             .catch(function (error) {
-                // Handle error
                 console.error(error);
             });
     });
 </script>
+
 @endsection

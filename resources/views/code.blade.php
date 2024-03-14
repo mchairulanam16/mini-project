@@ -6,6 +6,14 @@
     <h4>
         <a href="{{ route('generateCode') }}" class="btn btn-success">Generate Code</a>
     </h4>
+    @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+                @if(session()->has('code'))
+                    <p>Kode: {{ session('code') }}</p>
+                @endif
+            </div>
+            @endif
 </div>
 <div class="card-body">
 <div class="table-responsive">

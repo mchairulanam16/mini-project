@@ -26,6 +26,7 @@ class CodeController extends Controller
         return view('code', [
             'data' => $data
         ]);
+
     }
 
     /**
@@ -56,7 +57,7 @@ class CodeController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return view('home');
+        return redirect()->back()->with('success', 'Kode berhasil dibuat.')->with('code', $code);
     }
 
     /**

@@ -35,7 +35,7 @@
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">FEATURE</span>
+                            <span class="hide-menu">DATA</span>
                         </li>
                         @if($role->role == "staff" || $role->role == "admin")
                         <li class="sidebar-item">
@@ -71,6 +71,10 @@
                             </a>
                         </li>
                         @endif
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">History</span>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('absence.history')}}" aria-expanded="false">
                                 <span>

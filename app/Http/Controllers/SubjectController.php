@@ -63,9 +63,9 @@ class SubjectController extends Controller
     public function show($id)
     {
         //
-        $subject = Subject::findOrFail($id)->first();
+        $subject = Subject::find($id);
 
-        return view('home',$subject);
+        return response()->json($subject);
     }
 
     /**
@@ -89,16 +89,13 @@ class SubjectController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = $request->all();
-        $subject = Subject::findOrFail($id)->first();
+        $subject = Subject::findOrFail($id);
 
         $subject->update([
-            'name' => $request->input('name')
+            'name' => $request->name_edit
         ]);
 
-        $subject->save();
-
-        return view('home');
+        return redirect()->route('subject');
     }
 
     /**

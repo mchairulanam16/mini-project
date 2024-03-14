@@ -41,6 +41,8 @@ Route::post('/kelas/update/{id}', [App\Http\Controllers\KelasController::class, 
 //Subject
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
 Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');
+Route::get('/subject/{id}', [App\Http\Controllers\SubjectController::class, 'show'])->name('subject.show');
+Route::post('/subject/update/{id}', [App\Http\Controllers\SubjectController::class, 'update'])->name('subject.update');
 //Absen
 Route::post('/in', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
 Route::post('/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');

@@ -10,6 +10,17 @@
         </svg></a>
         </button>
     </div>
+    @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     <div class="row">
         <div class="table-responsive">
             <table class="table table-editable table-nowrap align-middle table-edits">
@@ -164,12 +175,25 @@
                 console.log(response.data);
                 // Redirect the user to a new page or do something else
                 window.location.href = "{{ route('user') }}";
+                showAlert('success', 'Success: Asisten berhasil ditambahkan.');
             })
             .catch(function (error) {
                 // Handle error
                 console.error(error);
             });
     });
+
+    // Function to show alert
+    function showAlert(type, message) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type}`;
+        alertDiv.textContent = message;
+        document.body.appendChild(alertDiv);
+        // Remove the alert after a certain duration if needed
+        setTimeout(function() {
+            alertDiv.remove();
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
 </script>
 <!-- script edit modal pop-up-->
 <script>
@@ -199,24 +223,17 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <!-- script submit edit form -->
 <script>
-    // Get the form element
     const formEdit = document.getElementById('myEditForm');
 
-    // Add an event listener to the submit button
     document.getElementById('submitEditBtn').addEventListener('click', function() {
-        // Serialize form data
         const formData = new FormData(formEdit);
 
-        // Send form data via Axios
         axios.post(formEdit.getAttribute('action'), formData)
             .then(function (response) {
-                // Handle success response
                 console.log(response.data);
-                // Redirect the user to a new page or do something else
                 window.location.href = "{{ route('user') }}";
             })
             .catch(function (error) {
-                // Handle error
                 console.error(error);
             });
     });

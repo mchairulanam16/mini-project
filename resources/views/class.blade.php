@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<!-- modal -->
+<!-- modal add -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
                 <label for="level">Tingkat</label>
-                <input type="text" class="form-control" id="level" name="level" placeholder="Masukkan Tingkat">
+                <input type="text" class="form-control" id="level" name="level" placeholder="Masukkan Tingkat" autocom>
             </div>
             <div class="form-group">
                 <label for="name">kelas</label>
@@ -93,23 +93,23 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="{{ route('class.update', ['id' => ':id'])}}">
+        <form id="editKelasForm" method="POST" action="{{ route('class.update', ['id' => ':id'])}}">
             @csrf
             <div class="form-group">
-                <label for="department-edit">Jurusan</label>
-                <input type="text" class="form-control" id="department-edit" name="department-edit">
+                <label for="department_edit">Jurusan</label>
+                <input type="text" class="form-control" id="department_edit" name="department_edit">
             </div>
             <div class="form-group">
-                <label for="faculty-edit">Fakultas</label>
-                <input type="text" class="form-control" id="faculty-edit" name="faculty-edit">
+                <label for="faculty_edit">Fakultas</label>
+                <input type="text" class="form-control" id="faculty_edit" name="faculty_edit">
             </div>
             <div class="form-group">
-                <label for="level-edit">Tingkat</label>
-                <input type="text" class="form-control" id="level-edit" name="level-edit">
+                <label for="level_edit">Tingkat</label>
+                <input type="text" class="form-control" id="level_edit" name="level_edit">
             </div>
             <div class="form-group">
-                <label for="name-edit">kelas</label>
-                <input type="text" class="form-control" id="name-edit" name="name-edit">
+                <label for="name_edit">kelas</label>
+                <input type="text" class="form-control" id="name_edit" name="name_edit">
             </div>
         </form>
       </div>
@@ -123,24 +123,17 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    // Get the form element
     const form = document.getElementById('myForm');
 
-    // Add an event listener to the submit button
     document.getElementById('submitBtn').addEventListener('click', function() {
-        // Serialize form data
         const formData = new FormData(form);
 
-        // Send form data via Axios
         axios.post(form.getAttribute('action'), formData)
             .then(function (response) {
-                // Handle success response
                 console.log(response.data);
-                // Redirect the user to a new page or do something else
                 window.location.href = "{{ route('class') }}";
             })
             .catch(function (error) {
-                // Handle error
                 console.error(error);
             });
     });
@@ -148,20 +141,21 @@
 <!-- script edit modal popup -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const editButtons = document.querySelectorAll('edit-btn');
+    const editButtons = document.querySelectorAll('.edit-btn');
 
     editButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             const kelasId = button.dataset.kelasId;
             axios.get('/kelas/' + kelasId)
-            .then(function ($response) {
+            .then(function (response) {
+                console.log(response.data);
                 const kelas = response.data;
-                document.getElementById('department-edit').value = kelas.department;
-                document.getElementById('faculty-edit').value = kelas.faculty;
-                document.getElementById('level-edit').value = kelas.level;
-                document.getElementById('name-edit').value = kelas.name;
+                document.getElementById('department_edit').value = kelas.department;
+                document.getElementById('faculty_edit').value = kelas.faculty;
+                document.getElementById('level_edit').value = kelas.level;
+                document.getElementById('name_edit').value = kelas.name;
 
-                document.getElementById('myEditForm').action ="{{ route('class.update', ['id' => ':id'])}}"
+                document.getElementById('editKelasForm').action ="{{ route('class.update', ['id' => ':id']) }}"
                     .replace(':id', kelas.id);
             })
             .catch(function (error) {
@@ -173,24 +167,18 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <!-- script submit edit form -->
 <script>
-    // Get the form element
-    const formEdit = document.getElementById('myEditForm');
+    const formEditKelas = document.getElementById('editKelasForm');
 
-    // Add an event listener to the submit button
     document.getElementById('submitEditBtn').addEventListener('click', function() {
-        // Serialize form data
-        const formData = new FormData(formEdit);
 
-        // Send form data via Axios
-        axios.post(formEdit.getAttribute('action'), formData)
+        const formData = new FormData(formEditKelas);
+
+        axios.post(formEditKelas.getAttribute('action'), formData)
             .then(function (response) {
-                // Handle success response
                 console.log(response.data);
-                // Redirect the user to a new page or do something else
                 window.location.href = "{{ route('class') }}";
             })
             .catch(function (error) {
-                // Handle error
                 console.error(error);
             });
     });

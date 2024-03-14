@@ -69,7 +69,7 @@ class KelasController extends Controller
     public function show($id)
     {
         //
-        $kelas = Kelas::findOrFail($id);
+        $kelas = Kelas::find($id);
 
         return response()->json($kelas);
     }
@@ -99,15 +99,13 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
 
         $kelas->update([
-            'department' => $request->input('department'),
-            'faculty' => $request->input('faculty'),
-            'level' => $request->input('level'),
-            'name' => $request->input('name')
+            'department' => $request->department_edit,
+            'faculty' => $request->faculty_edit,
+            'level' => $request->level_edit,
+            'name' => $request->name_edit
         ]);
 
-        Session::flash('success', 'kelas berhasil diperbarui.');
-        return redirect()->route('kelas.index')
-            ->with('success', 'kelas berhasil diperbarui.');
+        return redirect()->route('class');
     }
 
     /**
