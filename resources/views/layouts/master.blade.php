@@ -41,7 +41,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('code') }}" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-article"></i>
+                                    <i class="ti ti-code"></i>
                                 </span>
                                 <span class="hide-menu">Data Code</span>
                             </a>
@@ -49,7 +49,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('user') }}" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-article"></i>
+                                    <i class="ti ti-user fs-6"></i>
                                 </span>
                                 <span class="hide-menu">Data Asisten</span>
                             </a>
@@ -57,7 +57,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('class') }}" aria-expanded="false">
                                 <span>
-                                    <i class="ti ti-article"></i>
+                                    <i class="ti ti-table"></i>
                                 </span>
                                 <span class="hide-menu">Data Kelas</span>
                             </a>

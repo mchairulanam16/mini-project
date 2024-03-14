@@ -43,6 +43,12 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'name' => 'required',
+            'department' => 'required',
+            'faculty' => 'required',
+            'level' => 'required'
+        ]);
 
         $name = $request->input('name');
         $department = $request->input('department');

@@ -49,8 +49,13 @@ class AbsenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data = $request->all();
+        $validator = $request->validate([
+            'kelas_id' => 'required',
+            'subject_id' => 'required',
+            'code' => 'required',
+            'teaching_role' => 'required'
+        ]);
+
         $user = Auth::user()->id;
         $date = Carbon::now()->timezone('Asia/Bangkok');
         $today = $date->toDateString();

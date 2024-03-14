@@ -66,7 +66,6 @@
         </div>
     </div>
 </div>
-
 <!-- modal add-->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -44,7 +44,10 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'name' => 'required'
+        ]);
+
         $subject = $request->input('name');
 
         $subject = Subject::create([
@@ -91,7 +94,6 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $subject = Subject::findOrFail($id);
 
         $subject->update([

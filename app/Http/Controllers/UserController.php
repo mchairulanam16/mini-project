@@ -95,7 +95,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $validator = $request->validate([
+        //     'id_asisten' => 'required',
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'role' => 'required'
+        // ]);
         $user = User::findOrFail($id);
         $user->update([
             'id_asisten' => $request->id_asisten_edit,
