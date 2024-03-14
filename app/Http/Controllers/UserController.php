@@ -91,15 +91,14 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-
         $user->update([
-            'id_asisten' => $request->input('id_asisten-edit'),
-            'name' => $request->input('name-edit'),
-            'email' => $request->input('email-edit'),
-            'role' => $request->input('role-edit')
+            'id_asisten' => $request->id_asisten_edit,
+            'name' => $request->name_edit,
+            'email' => $request->email_edit,
+            'role' => $request->role_edit
         ]);
 
-        return redirect->route('user');
+        return redirect()->route('user');
 
     }
 

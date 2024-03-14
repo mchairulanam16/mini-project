@@ -21,14 +21,12 @@ class AbsenceController extends Controller
      */
     public function index()
     {
-        //
-        $data = Absence::with('user')
-        ->with('code')
-        ->with('kelas')
-        ->with('subject')
-        ->get();
-
-        // return $data;
+        $data = $data = Absence::all();
+        // $data = Absence::with('user')
+        // ->with('code')
+        // ->with('kelas')
+        // ->with('subject')
+        // ->get();
 
         return view('report', ['data' => $data]);
     }

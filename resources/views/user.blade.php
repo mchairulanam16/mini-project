@@ -112,24 +112,23 @@
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="{{ route('user.update', $user->id ) }}">
+        <form id="myEditForm" method="POST" action="{{ route('user.update', ['id' => ':id']) }}">
             @csrf
-            @method('PUT')
             <div class="form-group">
-                <label for="id_asisten-edit">ID Asisten</label>
-                <input type="text" class="form-control" id="id_asisten-edit" name="id_asisten-edit">
+                <label for="id_asisten_edit">ID Asisten</label>
+                <input type="text" class="form-control" id="id_asisten_edit" name="id_asisten_edit">
             </div>
             <div class="form-group">
-                <label for="name-edit">Nama</label>
-                <input type="text" class="form-control" id="name-edit" name="name-edit">
+                <label for="name_edit">Nama</label>
+                <input type="text" class="form-control" id="name_edit" name="name_edit">
             </div>
             <div class="form-group">
-                <label for="email-edit">Email</label>
-                <input type="email-edit" class="form-control" id="email-edit" name="email-edit">
+                <label for="email_edit">Email</label>
+                <input type="email_edit" class="form-control" id="email_edit" name="email_edit">
             </div>
             <div class="form-group">
-                <label for="role-edit">Role</label>
-                <select class="form-control" id="role-edit" name="role-edit">
+                <label for="role_edit">Role</label>
+                <select class="form-control" id="role_edit" name="role_edit">
                         <option value="" disabled selected>Pilih Role</option>
                         <option value="admin">admin</option>
                         <option value="staff">staff</option>
@@ -185,10 +184,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(response.data);
                     const user = response.data;
                     console.log(user);
-                    document.getElementById('id_asisten-edit').value = user.id_asisten;
-                    document.getElementById('name-edit').value = user.name;
-                    document.getElementById('email-edit').value = user.email;
-                    document.getElementById('role-edit').value = user.role;
+                    let user_id = user.id
+                    document.getElementById('id_asisten_edit').value = user.id_asisten;
+                    document.getElementById('name_edit').value = user.name;
+                    document.getElementById('email_edit').value = user.email;
+                    document.getElementById('role_edit').value = user.role;
+
+                    document.getElementById('myEditForm').action = "{{ route('user.update', ['id' => ':id']) }}"
+                        .replace(':id', user.id);
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -208,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(formEdit);
 
         // Send form data via Axios
-        axios.put(formEdit.getAttribute('action'), formData)
+        axios.post(formEdit.getAttribute('action'), formData)
             .then(function (response) {
                 // Handle success response
                 console.log(response.data);

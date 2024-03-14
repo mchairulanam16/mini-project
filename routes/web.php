@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //user
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 Route::post('/user/add', [App\Http\Controllers\UserController::class, 'store'])->name('user.add');
-Route::put('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::post('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::delete('/user/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete');
 Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
 //Code
