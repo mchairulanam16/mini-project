@@ -38,7 +38,7 @@
                                     <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                                 </button>
                             </div>
-                            <div class="col-md-3">
+                            <!-- <div class="col-md-3">
                                 <form method="POST" action="{{ route('user.delete', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
@@ -46,7 +46,7 @@
                                 <img src="{{ asset ('assets/images/icon/trash.svg')}}" alt="">
                                 </button>
                                 </form>
-                            </div>
+                            </div> -->
                         </td>
                     </tr>
                     @endforeach
@@ -181,10 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const userId = button.dataset.userId;
             axios.get('/user/' + userId)
                 .then(function (response) {
-                    console.log(response.data);
                     const user = response.data;
-                    console.log(user);
-                    let user_id = user.id
                     document.getElementById('id_asisten_edit').value = user.id_asisten;
                     document.getElementById('name_edit').value = user.name;
                     document.getElementById('email_edit').value = user.email;
@@ -192,10 +189,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     document.getElementById('myEditForm').action = "{{ route('user.update', ['id' => ':id']) }}"
                         .replace(':id', user.id);
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
         });
     });
 });

@@ -27,7 +27,7 @@
                         <td>{{ $item->name }}</td>
                         <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-                            Edit
+                        <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                         </button>
                         </td>
                     </tr>

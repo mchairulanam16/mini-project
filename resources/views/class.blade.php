@@ -16,23 +16,24 @@
                 <thead class="table-light">
                     <tr>
                         <th>id</th>
-                        <th>jurusan</th>
-                        <th>fakultas</th>
-                        <th>tingkat</th>
-                        <th>kelas</th>
+                        <th>Jurusan</th>
+                        <th>Fakultas</th>
+                        <th>Tingkat</th>
+                        <th>Kelas</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
+                    @foreach ($data as $kelas)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->department }}</td>
-                        <td>{{ $item->faculty }}</td>
-                        <td>{{ $item->level }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $kelas->id }}</td>
+                        <td>{{ $kelas->department }}</td>
+                        <td>{{ $kelas->faculty }}</td>
+                        <td>{{ $kelas->level }}</td>
+                        <td>{{ $kelas->name }}</td>
                         <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
-                            Edit
+                        <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-kelas-id="{{ $kelas->id }}">
+                        <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                         </button>
                         </td>
                     </tr>
@@ -88,27 +89,27 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Asisten</h5>
+        <h5 class="modal-title" id="editModalLabel">Edit Kelas</h5>
       </div>
       <div class="modal-body">
         <!-- Form goes here -->
-        <form id="myEditForm" method="POST" action="">
-            @method('PUT')
+        <form id="myEditForm" method="POST" action="{{ route('class.update', ['id' => ':id'])}}">
+            @csrf
             <div class="form-group">
                 <label for="department-edit">Jurusan</label>
-                <input type="text" class="form-control" id="department-edit" name="department-edit" placeholder="Masukkan Jurusan">
+                <input type="text" class="form-control" id="department-edit" name="department-edit">
             </div>
             <div class="form-group">
                 <label for="faculty-edit">Fakultas</label>
-                <input type="text" class="form-control" id="faculty-edit" name="faculty-edit" placeholder="Masukkan Fakultas">
+                <input type="text" class="form-control" id="faculty-edit" name="faculty-edit">
             </div>
             <div class="form-group">
                 <label for="level-edit">Tingkat</label>
-                <input type="text" class="form-control" id="level-edit" name="level-edit" placeholder="Masukkan Tingkat">
+                <input type="text" class="form-control" id="level-edit" name="level-edit">
             </div>
             <div class="form-group">
                 <label for="name-edit">kelas</label>
-                <input type="text" class="form-control" id="name-edit" name="name-edit" placeholder="Masukkan Tingkat">
+                <input type="text" class="form-control" id="name-edit" name="name-edit">
             </div>
         </form>
       </div>
@@ -132,6 +133,56 @@
 
         // Send form data via Axios
         axios.post(form.getAttribute('action'), formData)
+            .then(function (response) {
+                // Handle success response
+                console.log(response.data);
+                // Redirect the user to a new page or do something else
+                window.location.href = "{{ route('class') }}";
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error(error);
+            });
+    });
+</script>
+<!-- script edit modal popup -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editButtons = document.querySelectorAll('edit-btn');
+
+    editButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const kelasId = button.dataset.kelasId;
+            axios.get('/kelas/' + kelasId)
+            .then(function ($response) {
+                const kelas = response.data;
+                document.getElementById('department-edit').value = kelas.department;
+                document.getElementById('faculty-edit').value = kelas.faculty;
+                document.getElementById('level-edit').value = kelas.level;
+                document.getElementById('name-edit').value = kelas.name;
+
+                document.getElementById('myEditForm').action ="{{ route('class.update', ['id' => ':id'])}}"
+                    .replace(':id', kelas.id);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        });
+    });
+})
+</script>
+<!-- script submit edit form -->
+<script>
+    // Get the form element
+    const formEdit = document.getElementById('myEditForm');
+
+    // Add an event listener to the submit button
+    document.getElementById('submitEditBtn').addEventListener('click', function() {
+        // Serialize form data
+        const formData = new FormData(formEdit);
+
+        // Send form data via Axios
+        axios.post(formEdit.getAttribute('action'), formData)
             .then(function (response) {
                 // Handle success response
                 console.log(response.data);

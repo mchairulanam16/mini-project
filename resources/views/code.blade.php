@@ -25,9 +25,9 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->user->name }}</td>
                 @if ($item->id_used_by != null)
-                <td style="color: green;">Sudah Terpakai</td>
+                <td style="background-color: green; color: white;">Sudah Terpakai</td>
                 @else
-                <td style="color: red">Belum Terpakai</td>
+                <td style="background-color: red; color: white;">Belum Terpakai</td>
                 @endif
             </tr>
             @endforeach

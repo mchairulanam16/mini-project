@@ -122,5 +122,6 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
 
         $kelas->delete();
+        return redirect()->route('class');
     }
 }

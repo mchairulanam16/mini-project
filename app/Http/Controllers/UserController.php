@@ -65,6 +65,7 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
+        dd($user);
 
         return response()->json($user);
     }
@@ -114,7 +115,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        // return redirect()->route('user');
         return redirect()->route('user');
     }
 }
