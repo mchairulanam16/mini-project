@@ -101,25 +101,13 @@
         axios.post(form.getAttribute('action'), formData)
             .then(function (response) {
                 console.log(response.data);
+                alert(response.data.message);
                 window.location.href = "{{ route('subject') }}";
-                showAlert('success', 'Success: Asisten berhasil ditambahkan.');
             })
             .catch(function (error) {
                 console.error(error);
             });
     });
-
-    // Function to show alert
-    function showAlert(type, message) {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${type}`;
-        alertDiv.textContent = message;
-        document.body.appendChild(alertDiv);
-        // Remove the alert after a certain duration if needed
-        setTimeout(function() {
-            alertDiv.remove();
-        }, 5000); // 5000 milliseconds = 5 seconds
-    }
 </script>
 <!-- script edit modal pop-up-->
 <script>
@@ -153,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         axios.post(formEdit.getAttribute('action'), formData)
             .then(function (response) {
                 console.log(response.data);
+                alert(response.data.message);
                 window.location.href = "{{ route('subject') }}";
             })
             .catch(function (error) {

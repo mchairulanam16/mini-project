@@ -37,7 +37,7 @@ Route::get('/kelas', [App\Http\Controllers\KelasController::class, 'index'])->na
 Route::get('/kelas/{id}', [App\Http\Controllers\KelasController::class, 'show'])->name('class.show');
 Route::post('/kelas/add',  [App\Http\Controllers\KelasController::class, 'store'])->name('class.add');
 Route::delete('/kelas/delete/{id}', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.delete');
-Route::post('/kelas/update/{id}', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.update');
+Route::post('/kelas/update/{id}', [App\Http\Controllers\KelasController::class, 'update'])->name('class.update');
 //Subject
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
 Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');

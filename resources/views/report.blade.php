@@ -2,10 +2,20 @@
 
 @section('content')
 <div class="card-body">
-    <form action="{{ route('export')}}" method="get">
-        <p>Untuk export data kedalam excel klik disini</p>
-        <button class="btn btn-success">Export Excel</button>
-    </form>
+<form action="{{ route('export') }}" method="get" class="form-inline">
+    <div class="form-group mr-2">
+        <label for="start_date" class="mr-2">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" class="form-control" required>
+    </div>
+
+    <div class="form-group mr-2">
+        <label for="end_date" class="mr-2">End Date:</label>
+        <input type="date" id="end_date" name="end_date" class="form-control" required>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Export Report</button>
+</form>
+
 </div>
 <div class="card-body">
 <div class="table-responsive">

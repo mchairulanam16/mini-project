@@ -89,15 +89,13 @@ class AbsenceController extends Controller
     public function show()
     {
         //
-        // $user = Auth::user()->id;
+        $user = Auth::user()->id;
 
-        // $data = Absence::with(['user', 'code', 'kelas', 'subject'])
-        //     ->where('user_id', $user)
-        //     ->get();
+        $data = Absence::with(['user', 'code', 'kelas', 'subject'])
+            ->where('user_id', $user)
+            ->get();
 
-        // return $data;
-
-        // return view('history', ['data' => $data]);
+        return view('history', ['data' => $data]);
     }
 
     /**
@@ -147,8 +145,14 @@ class AbsenceController extends Controller
         //
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new AbsenceExport, 'Report.xlsx');
+        $start = $request->input('start_date');
+        $end = $request->input('start_date');
+
+        $startDateTime = Carbon::createFromFormat('Y-m-d', $start)->startOfDay();
+        $endDateTime = Carbon::createFromFormat('Y-m-d', $end)->endOfDay();
+
+        return Excel::download(new AbsenceExport($startDateTime, $endDateTime), 'Report.xlsx');
     }
 }

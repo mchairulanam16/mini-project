@@ -131,6 +131,7 @@
         axios.post(form.getAttribute('action'), formData)
             .then(function (response) {
                 console.log(response.data);
+                alert(response.data.message);
                 window.location.href = "{{ route('class') }}";
             })
             .catch(function (error) {
@@ -176,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         axios.post(formEditKelas.getAttribute('action'), formData)
             .then(function (response) {
                 console.log(response.data);
+                alert(response.data.message);
                 window.location.href = "{{ route('class') }}";
             })
             .catch(function (error) {
