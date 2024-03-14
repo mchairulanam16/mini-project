@@ -9,7 +9,7 @@
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
         </svg></a>
         </button>
-    </div>
+    </div>{{--
     @if(session()->has('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -20,7 +20,7 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-        @endif
+        @endif --}}
     <div class="row">
         <div class="table-responsive">
             <table class="table table-editable table-nowrap align-middle table-edits">
@@ -173,27 +173,15 @@
             .then(function (response) {
                 // Handle success response
                 console.log(response.data);
+                alert(response.data.message);
                 // Redirect the user to a new page or do something else
                 window.location.href = "{{ route('user') }}";
-                showAlert('success', 'Success: Asisten berhasil ditambahkan.');
             })
             .catch(function (error) {
                 // Handle error
                 console.error(error);
             });
     });
-
-    // Function to show alert
-    function showAlert(type, message) {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${type}`;
-        alertDiv.textContent = message;
-        document.body.appendChild(alertDiv);
-        // Remove the alert after a certain duration if needed
-        setTimeout(function() {
-            alertDiv.remove();
-        }, 5000); // 5000 milliseconds = 5 seconds
-    }
 </script>
 <!-- script edit modal pop-up-->
 <script>
@@ -231,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
         axios.post(formEdit.getAttribute('action'), formData)
             .then(function (response) {
                 console.log(response.data);
+                alert(response.data.message);
                 window.location.href = "{{ route('user') }}";
             })
             .catch(function (error) {

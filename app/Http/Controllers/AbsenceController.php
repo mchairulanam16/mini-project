@@ -59,7 +59,7 @@ class AbsenceController extends Controller
         $idcode = $findcode->id;
         $cekcode = $findcode->user_id;
         if($cekcode == $user || $cekcode = null) {
-            return redirect()->route('home')->with('error', 'Tidak bisa gunakan kode sendiri.');
+            return redirect()->back()->with('error', 'Tidak bisa gunakan kode sendiri.');
         }
 
         $findcode->update([
@@ -76,7 +76,8 @@ class AbsenceController extends Controller
             'start' => $time,
         ]);
 
-        return redirect()->route('home');
+        return redirect()->back()
+        ->with('success', 'Berhasil Clock In');
     }
 
     /**
@@ -88,15 +89,15 @@ class AbsenceController extends Controller
     public function show()
     {
         //
-        $user = Auth::user()->id;
+        // $user = Auth::user()->id;
 
-        $data = Absence::with(['user', 'code', 'kelas', 'subject'])
-            ->where('user_id', $user)
-            ->get();
+        // $data = Absence::with(['user', 'code', 'kelas', 'subject'])
+        //     ->where('user_id', $user)
+        //     ->get();
 
         // return $data;
 
-        return view('history', ['data' => $data]);
+        // return view('history', ['data' => $data]);
     }
 
     /**
@@ -131,7 +132,8 @@ class AbsenceController extends Controller
         $isCheckin->duration = $duration;
         $isCheckin->save();
 
-        return redirect()->route('home');
+        return redirect()->back()
+        ->with('success', 'Berhasil Clock Out');
     }
 
     /**

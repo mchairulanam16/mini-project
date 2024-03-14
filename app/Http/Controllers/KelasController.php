@@ -56,8 +56,10 @@ class KelasController extends Controller
             'level' => $level
         ]);
 
-        return redirect()->route('class')
-                ->with('success', 'Kelas berhasil ditambahkan.');
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Ditambahkan'
+        ]);
     }
 
     /**
@@ -105,7 +107,10 @@ class KelasController extends Controller
             'name' => $request->name_edit
         ]);
 
-        return redirect()->route('class');
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Diedit'
+        ]);
     }
 
     /**

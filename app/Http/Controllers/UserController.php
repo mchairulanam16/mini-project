@@ -54,6 +54,11 @@ class UserController extends Controller
             'password' => $password,
             'role' => $role
         ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Asisten Berhasil Ditambahkan'
+        ]);
     }
 
     /**
@@ -99,7 +104,10 @@ class UserController extends Controller
             'role' => $request->role_edit
         ]);
 
-        return redirect()->route('user');
+        return response()->json([
+            'success' => true,
+            'message' => 'Asisten Berhasil Diedit'
+        ]);
 
     }
 

@@ -51,7 +51,10 @@ class SubjectController extends Controller
             'name' => $subject
         ]);
 
-        return redirect()->route('user');
+        return response()->json([
+            'success' => true,
+            'message' => 'Materi Berhasil Ditambahkan'
+        ]);
     }
 
     /**
@@ -95,7 +98,10 @@ class SubjectController extends Controller
             'name' => $request->name_edit
         ]);
 
-        return redirect()->route('subject');
+        return response()->json([
+            'success' => true,
+            'message' => 'Materi Berhasil Diedit'
+        ]);
     }
 
     /**

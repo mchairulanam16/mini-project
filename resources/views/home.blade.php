@@ -30,15 +30,24 @@ $isCheckin = App\Models\Absence::where('user_id', Auth::id())->where('date', $to
         @endif
 
         <div class="col-md-6">
-
             <h1>Selamat Datang {{ $role->name}}</h1>
-            <form id="form-checkin" action="{{ route('checkin') }}" method="post">
-                @csrf
-                <div class="mb-3">
-                    <center>
+            <center>
                         <label id="clock" style="font-size: 50px; color:#0A77DE; webkit-text-stroke: 3px #00ACFE" ; text-shadow: 4px 4px 10px #36D6F3, 4px 4px 20px #36D6F3, 4px 4px 30px #36D6F3, 4px 4px 40px #36D6F3;>
                         </label>
                     </center>
+            <form id="form-checkin" action="{{ route('checkin') }}" method="post">
+                @csrf
+                <div class="row">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
                 </div>
                 <div class="mb-3">
                     <label for="id_asisten" class="form-label">ID Asisten</label>
