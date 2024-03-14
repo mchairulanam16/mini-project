@@ -118,5 +118,7 @@ class SubjectController extends Controller
         $subject = Subject::findOrFail($id)->first();
 
         $subject->delete();
+
+        return redirect()->route('subject')->with('success', 'Data berhasil dihapus');
     }
 }

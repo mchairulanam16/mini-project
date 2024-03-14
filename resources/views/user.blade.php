@@ -9,7 +9,7 @@
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
         </svg></a>
         </button>
-    </div>{{--
+    </div>
     @if(session()->has('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -20,7 +20,7 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-        @endif --}}
+        @endif
     <div class="row">
         <div class="table-responsive">
             <table class="table table-editable table-nowrap align-middle table-edits">
@@ -49,7 +49,7 @@
                                     <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                                 </button>
                             </div>
-                            <!-- <div class="col-md-3">
+                            <div class="col-md-3">
                                 <form method="POST" action="{{ route('user.delete', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
@@ -57,7 +57,7 @@
                                 <img src="{{ asset ('assets/images/icon/trash.svg')}}" alt="">
                                 </button>
                                 </form>
-                            </div> -->
+                            </div>
                         </td>
                     </tr>
                     @endforeach

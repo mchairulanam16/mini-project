@@ -43,6 +43,7 @@ Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])
 Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add')->middleware('super');
 Route::get('/subject/{id}', [App\Http\Controllers\SubjectController::class, 'show'])->name('subject.show')->middleware('super');
 Route::post('/subject/update/{id}', [App\Http\Controllers\SubjectController::class, 'update'])->name('subject.update')->middleware('super');
+Route::delete('/subject/delete/{id}', [App\Http\Controllers\SubjectController::class, 'destroy'])->name('subject.delete')->middleware('super');
 //Absen
 Route::post('/in', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
 Route::post('/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');

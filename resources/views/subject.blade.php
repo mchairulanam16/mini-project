@@ -10,6 +10,17 @@
         </svg></a>
         </button>
     </div>
+    @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     <div class="row">
         <div class="table-responsive">
             <table class="table table-editable table-nowrap align-middle table-edits">
@@ -26,9 +37,22 @@
                         <td>{{ $subject->id }}</td>
                         <td>{{ $subject->name }}</td>
                         <td>
+                        <div class="row">
+                        <div class="col-md-3">
                         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-subject-id="{{ $subject->id }}">
                         <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                         </button>
+                        </div>
+                        <div class="col-md-3">
+                                <form method="POST" action="{{ route('subject.delete', $subject->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                <img src="{{ asset ('assets/images/icon/trash.svg')}}" alt="">
+                                </button>
+                                </form>
+                            </div>
+                        </div>
                         </td>
                     </tr>
                     @endforeach

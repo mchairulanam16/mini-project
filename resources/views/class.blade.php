@@ -32,9 +32,22 @@
                         <td>{{ $kelas->level }}</td>
                         <td>{{ $kelas->name }}</td>
                         <td>
+                        <div class="row">
+                        <div class="col-md-3">
                         <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-kelas-id="{{ $kelas->id }}">
                         <img src="{{ asset ('assets/images/icon/pencil.svg')}}" alt="">
                         </button>
+                        </div>
+                        <div class="col-md-3">
+                                <form method="POST" action="{{ route('class.delete', $kelas->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                <img src="{{ asset ('assets/images/icon/trash.svg')}}" alt="">
+                                </button>
+                                </form>
+                            </div>
+                        </div>
                         </td>
                     </tr>
                     @endforeach
