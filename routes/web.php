@@ -24,28 +24,28 @@ Auth::routes();
 //home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //user
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
-Route::post('/user/add', [App\Http\Controllers\UserController::class, 'store'])->name('user.add');
-Route::post('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
-Route::delete('/user/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete');
-Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user')->middleware('super');
+Route::post('/user/add', [App\Http\Controllers\UserController::class, 'store'])->name('user.add')->middleware('super');
+Route::post('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update')->middleware('super');
+Route::delete('/user/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete')->middleware('super');
+Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('user.show')->middleware('super');
 //Code
 Route::get('/code', [App\Http\Controllers\CodeController::class, 'index'])->name('code');
-Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store'])->name('generateCode');
+Route::get('/generate-code', [App\Http\Controllers\CodeController::class, 'store'])->name('generateCode')->middleware('cancode');
 //Kelas
-Route::get('/kelas', [App\Http\Controllers\KelasController::class, 'index'])->name('class');
-Route::get('/kelas/{id}', [App\Http\Controllers\KelasController::class, 'show'])->name('class.show');
-Route::post('/kelas/add',  [App\Http\Controllers\KelasController::class, 'store'])->name('class.add');
-Route::delete('/kelas/delete/{id}', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.delete');
-Route::post('/kelas/update/{id}', [App\Http\Controllers\KelasController::class, 'update'])->name('class.update');
+Route::get('/kelas', [App\Http\Controllers\KelasController::class, 'index'])->name('class')->middleware('super');
+Route::get('/kelas/{id}', [App\Http\Controllers\KelasController::class, 'show'])->name('class.show')->middleware('super');
+Route::post('/kelas/add',  [App\Http\Controllers\KelasController::class, 'store'])->name('class.add')->middleware('super');
+Route::delete('/kelas/delete/{id}', [App\Http\Controllers\KelasController::class, 'destroy'])->name('class.delete')->middleware('super');
+Route::post('/kelas/update/{id}', [App\Http\Controllers\KelasController::class, 'update'])->name('class.update')->middleware('super');
 //Subject
-Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
-Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add');
-Route::get('/subject/{id}', [App\Http\Controllers\SubjectController::class, 'show'])->name('subject.show');
-Route::post('/subject/update/{id}', [App\Http\Controllers\SubjectController::class, 'update'])->name('subject.update');
+Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject')->middleware('super');
+Route::post('/subject/add', [App\Http\Controllers\SubjectController::class, 'store'])->name('subject.add')->middleware('super');
+Route::get('/subject/{id}', [App\Http\Controllers\SubjectController::class, 'show'])->name('subject.show')->middleware('super');
+Route::post('/subject/update/{id}', [App\Http\Controllers\SubjectController::class, 'update'])->name('subject.update')->middleware('super');
 //Absen
 Route::post('/in', [App\Http\Controllers\AbsenceController::class, 'store'])->name('checkin');
 Route::post('/out', [App\Http\Controllers\AbsenceController::class, 'update'])->name('checkout');
 Route::get('/absence/history', [App\Http\Controllers\AbsenceController::class, 'show'])->name('absence.history');
-Route::get('/absence/report', [App\Http\Controllers\AbsenceController::class, 'index'])->name('absence.report');
-Route::get('/absence/export/', [App\Http\Controllers\AbsenceController::class, 'export'])->name('export');
+Route::get('/absence/report', [App\Http\Controllers\AbsenceController::class, 'index'])->name('absence.report')->middleware('super');
+Route::get('/absence/export/', [App\Http\Controllers\AbsenceController::class, 'export'])->name('export')->middleware('super');
