@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Absence;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,8 +23,8 @@ class Code extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function absence(): HasMany
+    public function absence(): HasOne
     {
-        return $this->hasMany(Absence::class);
+        return $this->hasOne(Absence::class);
     }
 }
